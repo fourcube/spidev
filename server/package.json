@@ -13,8 +13,13 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^7.0.18",
+    "@types/rpio": "0.0.1",
     "nodemon": "^1.11.0",
     "ts-node": "^3.0.4",
     "typescript": "^2.3.2"
+  },
+  "dependencies": {
+    "rpio": "^0.9.16",
+    "zeromq": "^4.2.1"
   }
 }
