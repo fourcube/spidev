@@ -1,0 +1,6 @@
+<h2>Pin Status</h2>
+<ul class="pin-list">
+  <li class="pin" [ngClass]="{active: pin.state == 1}" *ngFor="let pin of pins" (click)="clickPin(pin)">
+    {{pin.id}}
+  </li>
+</ul>

@@ -5,10 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { WsService } from "app/ws.service";
+import { PinListComponent } from './pin-list/pin-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PinListComponent
   ],
   imports: [
     BrowserModule,
@@ -16,7 +19,9 @@ import { AppComponent } from './app.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    WsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,2 @@
-<h1>
-  {{title}}
-</h1>
+<sv-pin-list [pins]="pins | async" (pinClicked)="clickPin($event)"></sv-pin-list>
 <router-outlet></router-outlet>

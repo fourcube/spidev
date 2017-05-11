@@ -1,0 +1,28 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+
+    float: left;
+    text-align: center;
+
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+    border-radius: 50%;
+    background-color: #ccc;
+
+    &:nth-child(14) {
+      clear: both;
+    }
+
+    &.active {
+      background-color: lime;
+    }
+  }
+}

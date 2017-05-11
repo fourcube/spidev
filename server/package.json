@@ -12,14 +12,22 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/lowdb": "^0.15.0",
     "@types/node": "^7.0.18",
     "@types/rpio": "0.0.1",
+    "@types/ws": "0.0.41",
     "nodemon": "^1.11.0",
     "ts-node": "^3.0.4",
     "typescript": "^2.3.2"
   },
   "dependencies": {
+    "detect-rpi": "^1.0.1",
+    "lowdb": "^0.16.2",
     "rpio": "^0.9.16",
+    "ws": "^2.3.1",
     "zeromq": "^4.2.1"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^3.0.0"
   }
 }
