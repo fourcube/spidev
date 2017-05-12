@@ -24,9 +24,5 @@ export class AppComponent {
     }
 
     this.selectedPin = pin;
-    /*this.ws.updatePin({
-      id: pin.id,
-      state: pin.state === 1 ? 0 : 1
-    });*/
   }
 }
