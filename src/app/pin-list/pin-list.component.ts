@@ -8,6 +8,7 @@ import { Pin } from "model";
 })
 export class PinListComponent implements OnInit {
   @Input() pins: Pin[];
+  @Input() selectedPin: Pin;
   @Output() pinClicked: EventEmitter<Pin> = new EventEmitter();
 
   constructor() { }

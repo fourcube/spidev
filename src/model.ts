@@ -3,6 +3,6 @@ export interface Pin {
   state: 1 | 0;
 }
 
-export interface PinStatus {
+export interface PinState {
   pins: Pin[]
 }

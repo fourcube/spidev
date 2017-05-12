@@ -10,16 +10,23 @@ import { Pin } from "model";
 })
 export class AppComponent {
   pins: Observable<Pin[]>;
+  selectedPin: Pin;
 
   constructor(private ws: WsService) {
-    this.pins = this.ws.pinStatus
+    this.pins = this.ws.pinState
       .map(status => status.pins);
   }
 
   clickPin(pin: Pin) {
-    this.ws.updatePin({
+    if(this.selectedPin == pin) {
+      this.selectedPin = null;
+      return;
+    }
+
+    this.selectedPin = pin;
+    /*this.ws.updatePin({
       id: pin.id,
       state: pin.state === 1 ? 0 : 1
-    });
+    });*/
   }
 }

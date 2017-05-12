@@ -1,33 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Subject,BehaviorSubject,Observable } from "rxjs/Rx";
-import { Pin, PinStatus } from "model";
-import { pinStatus, Message } from '../../server/src/messages';
+import { Pin, PinState } from "model";
+import { pinState, Message } from '../../server/src/messages';
+
+type PinStateMap = Map<number, Pin>;
 
 @Injectable()
 export class WsService {
   private ws: WebSocket;
 
-  private _pinStatus: BehaviorSubject<PinStatus>;
+  private _pinState: BehaviorSubject<PinStateMap>;
 
   constructor() {
     this.init();
-    const pins: Pin[] = [];
-
-    for(let i=0;i<26;i++) {
-      pins.push({
-        id: i,
-        state: 0
-      });
-    }
-
-    this._pinStatus = new BehaviorSubject({
-      pins
-    });
+    this._pinState = new BehaviorSubject(new Map());
   }
 
-  get pinStatus(): Observable<PinStatus> {
-    return this._pinStatus.asObservable()
-      .do(x => console.log(x));
+  get pinState(): Observable<PinState> {
+    return this._pinState.asObservable()
+      .map(x => Array.from(x))
+      .map(x => {
+        x.sort(([a, _1], [b, _2]) => a - b);
+        return x;
+      })
+      .map((arr) => {
+        return {
+          pins: arr.map(([_, pin]) => pin)
+        }
+      });
   }
 
   init() {
@@ -44,27 +44,24 @@ export class WsService {
 
     this.ws.addEventListener('message', (event) => {
       const data = <Message>JSON.parse(event.data);
-      console.log(data);
+
       switch(data.type) {
         case "pin_state":
-          const currentStatus = this._pinStatus.getValue();
-
-          currentStatus.pins = currentStatus.pins.map((p) => {
-            if(p.id == data.payload.id) {
-              return data.payload;
-            }
-
-            return p;
-          });
-
-          this._pinStatus.next(currentStatus);
+          const currentState = this._pinState.getValue();
+          const newState = this.updatePinState(currentState, data.payload);
+          this._pinState.next(newState);
         break;
       }
     });
   }
 
   updatePin(pin) {
-    this.ws.send(pinStatus(pin.id, pin.state));
+    this.ws.send(pinState(pin.id, pin.state));
+  }
+
+  private updatePinState(currentState: PinStateMap, update: Pin): PinStateMap {
+    currentState.set(update.id, update);
+    return currentState;
   }
 
   private createWs() {

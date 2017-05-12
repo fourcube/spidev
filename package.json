@@ -1,6 +1,7 @@
 {
-  "name": "spivis",
-  "version": "0.0.0",
+  "name": "spidev",
+  "version": "0.1.0",
+  "description": "a development platform for software SPI",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

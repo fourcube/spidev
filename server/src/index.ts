@@ -3,7 +3,8 @@
 
 import * as WebSocket from 'ws';
 import Lowdb = require('lowdb');
-import { pinStatus, Message } from "./messages";
+import { pinState, Message } from "./messages";
+import { Gpio } from "./gpio";
 
 const db = new Lowdb("db.json");
 
@@ -21,7 +22,7 @@ wss.on('connection', (ws) => {
       case "pin_state":
 
       const pin = data.payload;
-      ws.send(pinStatus(pin.id, pin.state));
+      ws.send(pinState(pin.id, pin.state));
 
       break;
     }
@@ -31,6 +32,9 @@ wss.on('connection', (ws) => {
     console.log("Closed", message, "(", code, ")");
   });
 
-  ws.send(pinStatus(1, 1));
+  Gpio.initialState().pins.forEach((p) => {
+    ws.send(pinState(p.id, p.state));
+  });
+
 
 });

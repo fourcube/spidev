@@ -1,2 +1,3 @@
-<sv-pin-list [pins]="pins | async" (pinClicked)="clickPin($event)"></sv-pin-list>
+<sv-pin-list [pins]="pins | async" [selectedPin]="selectedPin" (pinClicked)="clickPin($event)"></sv-pin-list>
+<sv-pin-config [pin]="selectedPin" *ngIf="selectedPin"></sv-pin-config>
 <router-outlet></router-outlet>
