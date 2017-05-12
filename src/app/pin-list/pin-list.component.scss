@@ -3,15 +3,15 @@ ul {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(13, 3rem);
-  grid-template-rows: 3rem 3rem;
+  grid-template-columns: repeat(20, 2rem);
+  grid-template-rows: 2rem 2rem;
   grid-auto-flow: column;
-  grid-gap: 10px;
+  grid-gap: 5px;
 
   li {
-    width: 3rem;
-    height: 3rem;
-    line-height: 3rem;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
 
     cursor: pointer;
     text-align: center;
@@ -21,6 +21,18 @@ ul {
 
     border-radius: 50%;
     background-color: #ccc;
+
+    &:nth-child(odd) {
+      /* autoprefixer: off */
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+
+    &:nth-child(even) {
+      /* autoprefixer: off */
+      grid-row-start: 2;
+      grid-row-end: 3;
+    }
 
     &.active {
       background-color: lime;

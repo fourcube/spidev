@@ -7,7 +7,7 @@ export class Gpio {
     // TODO: When this is executed on the RPi,
     //       we should read all PINs
     const pins: Pin[] = [];
-    for(let i=0;i<26;i++) {
+    for(let i=1;i<=40;i++) {
       pins.push({
         id: i,
         state: 0
