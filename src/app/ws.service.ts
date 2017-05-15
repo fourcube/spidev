@@ -26,7 +26,7 @@ export class WsService {
       .map((arr) => {
         return {
           pins: arr.map(([_, pin]) => pin)
-        }
+        };
       });
   }
 
@@ -34,11 +34,11 @@ export class WsService {
     this.ws = this.createWs();
 
     this.ws.addEventListener('open', () => {
-      console.log("Connected.");
+      console.log('Connected.');
     });
 
     this.ws.addEventListener('close', () => {
-      console.log("Disconnected.");
+      console.log('Disconnected.');
       setTimeout(this.init.bind(this), 250);
     });
 

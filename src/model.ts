@@ -1,7 +1,7 @@
 
 export type PinValue = 1 | 0;
-export type PinDirection = "IN" | "OUT";
-export type PinResistor = "NONE" | "PULL_UP" | "PULL_DOWN";
+export type PinDirection = 'IN' | 'OUT';
+export type PinResistor = 'NONE' | 'PULL_UP' | 'PULL_DOWN';
 export interface Pin {
   id: number;
   value: PinValue;
@@ -10,5 +10,5 @@ export interface Pin {
 }
 
 export interface PinState {
-  pins: Pin[]
+  pins: Pin[];
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Pin } from "model";
+import { Pin } from 'model';
 
 @Component({
   selector: 'sv-pin-config',

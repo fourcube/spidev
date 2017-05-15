@@ -1,14 +1,14 @@
-import { Pin, PinValue, PinResistor, PinDirection } from "./model";
+import { Pin, PinValue, PinResistor, PinDirection } from './model';
 
 /**
  * Model interfaces and classes.
  */
 export interface PinStateMessage {
-  type: "pin_state";
-  payload: Pin
+  type: 'pin_state';
+  payload: Pin;
 }
 
-export type Message = PinStateMessage
+export type Message = PinStateMessage;
 
 /**
  * Message generating functions.
@@ -17,9 +17,9 @@ export type Message = PinStateMessage
 export function pinState(id: number,
                          direction: PinDirection,
                          value: PinValue = 0,
-                         resistor: PinResistor = "NONE") {
+                         resistor: PinResistor = 'NONE') {
   return JSON.stringify({
-    type: "pin_state",
+    type: 'pin_state',
     payload: {
       id,
       value,

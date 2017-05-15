@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WsService } from "app/ws.service";
+import { WsService } from 'app/ws.service';
 import { PinListComponent } from './pin-list/pin-list.component';
 import { PinConfigComponent } from './pin-config/pin-config.component';
 
