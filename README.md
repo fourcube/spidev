@@ -4,7 +4,7 @@ A browser-based development environment and experimentation playground for Raspb
 
 ## Getting started
 ```
-npm install && pushd server && npm install && popd
+npm install
 npm start
 ```
 
