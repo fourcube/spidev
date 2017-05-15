@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Subject,BehaviorSubject,Observable } from "rxjs/Rx";
-import { Pin, PinState } from "model";
-import { pinState, Message } from '../../server/src/messages';
+import { Subject, BehaviorSubject, Observable } from 'rxjs/Rx';
+import { Pin, PinState } from 'model';
+import { pinState, Message } from 'messages';
 
 type PinStateMap = Map<number, Pin>;
 
@@ -45,12 +45,12 @@ export class WsService {
     this.ws.addEventListener('message', (event) => {
       const data = <Message>JSON.parse(event.data);
 
-      switch(data.type) {
-        case "pin_state":
+      switch (data.type) {
+        case 'pin_state':
           const currentState = this._pinState.getValue();
           const newState = this.updatePinState(currentState, data.payload);
           this._pinState.next(newState);
-        break;
+          break;
       }
     });
   }

@@ -3,10 +3,12 @@
 
 import * as WebSocket from 'ws';
 import Lowdb = require('lowdb');
-import { pinState, Message } from "./messages";
+import { pinState, Message } from "../../src/messages";
 import { Gpio } from "./gpio";
 
 const db = new Lowdb("db.json");
+
+const gpio = new Gpio();
 
 const wss = new WebSocket.Server({
   perMessageDeflate: false,
@@ -32,7 +34,7 @@ wss.on('connection', (ws) => {
     console.log("Closed", message, "(", code, ")");
   });
 
-  Gpio.initialState().pins.forEach((p) => {
+  gpio.getState().pins.forEach((p) => {
     ws.send(pinState(p.id, p.state));
   });
 

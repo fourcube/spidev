@@ -1,21 +1,38 @@
 import { PinState, Pin } from "../../src/model";
 
+
+const ZERO_PINS: Pin[] = [];
+
+for(let i=1;i<=40;i++) {
+  ZERO_PINS.push({
+    id: i,
+    state: 0
+  });
+}
+
 export class Gpio {
-  constructor () {}
-
-  static initialState(): PinState {
-    // TODO: When this is executed on the RPi,
-    //       we should read all PINs
-    const pins: Pin[] = [];
-    for(let i=1;i<=40;i++) {
-      pins.push({
-        id: i,
-        state: 0
-      });
-    }
-
-    return {
-      pins
+  currentState: PinState
+  constructor () {
+    this.currentState = {
+      pins: ZERO_PINS
     };
+  }
+
+  /**
+   * Resets all pins to the given state.
+   *
+   * @returns {PinState} the new state
+   */
+  reset(state: PinState): PinState {
+    return this.currentState;
+  }
+
+  /**
+   * Return the current state of all pins.
+   *
+   * @returns {PinState} the current pin state
+   */
+  getState(): PinState {
+    return this.currentState;
   }
 }
