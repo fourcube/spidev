@@ -6,7 +6,9 @@ const ZERO_PINS: Pin[] = [];
 for(let i=1;i<=40;i++) {
   ZERO_PINS.push({
     id: i,
-    state: 0
+    direction: "IN",
+    value: 0,
+    resistor: "NONE"
   });
 }
 
