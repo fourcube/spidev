@@ -24,7 +24,9 @@ wss.on('connection', (ws) => {
       case "pin_state":
 
       const pin = data.payload;
-      ws.send(pinState(pin.id, pin.direction, pin.value));
+      gpio.update(pin);
+
+      ws.send(pinState(pin));
 
       break;
     }
@@ -35,7 +37,7 @@ wss.on('connection', (ws) => {
   });
 
   gpio.getState().pins.forEach((p) => {
-    ws.send(pinState(p.id, p.direction, p.value));
+    ws.send(pinState(p));
   });
 
 

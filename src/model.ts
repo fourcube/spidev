@@ -1,5 +1,5 @@
 
-export type PinValue = 1 | 0;
+export type PinValue = 'LOW' | 'HIGH';
 export type PinDirection = 'IN' | 'OUT';
 export type PinResistor = 'NONE' | 'PULL_UP' | 'PULL_DOWN';
 export interface Pin {

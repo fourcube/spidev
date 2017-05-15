@@ -1,17 +1,23 @@
 <h2>Pin Configuration</h2>
-<form>
+<form #form="ngForm" (updateModel)="updateForm()">
+  <div>
+    <label for="value_low">Low (0)</label>
+    <input type="radio" id="value_low" name="value" [(ngModel)]="pin.value" value="LOW">
+    <label for="value_high">High (1)</label>
+    <input type="radio" id="value_high" name="value" [(ngModel)]="pin.value" value="HIGH">
+  </div>
   <div>
     <label for="in">In</label>
-    <input type="radio" id="in" name="in-out" value="IN">
+    <input type="radio" id="in" name="direction" [(ngModel)]="pin.direction" value="IN">
     <label for="out">Out</label>
-    <input type="radio" id="out" name="in-out" value="OUT">
+    <input type="radio" id="out" name="direction" [(ngModel)]="pin.direction" value="OUT">
   </div>
   <div>
     <label for="resistor">Widerstand</label>
-    <select name="resistor">
-      <option selected value="-">-</option>
-      <option value="Pull up">Pull-up</option>
-      <option value="Pull down">Pull-down</option>
+    <select name="resistor" [(ngModel)]="pin.resistor">
+      <option selected value="NONE">-</option>
+      <option value="PULL_UP">Pull-up</option>
+      <option value="PULL_DOWN">Pull-down</option>
     </select>
   </div>
 </form>

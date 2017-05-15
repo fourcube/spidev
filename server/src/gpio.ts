@@ -1,13 +1,12 @@
 import { PinState, Pin } from "../../src/model";
 
-
 const ZERO_PINS: Pin[] = [];
 
 for(let i=1;i<=40;i++) {
   ZERO_PINS.push({
     id: i,
     direction: "IN",
-    value: 0,
+    value: "LOW",
     resistor: "NONE"
   });
 }
@@ -36,5 +35,17 @@ export class Gpio {
    */
   getState(): PinState {
     return this.currentState;
+  }
+
+  /**
+   * Update a pin.
+   */
+  update(pin: Pin) {
+    this.currentState.pins = this.currentState.pins.map((p) => {
+      if(p.id === pin.id) {
+        return pin;
+      }
+      return p;
+    })
   }
 }

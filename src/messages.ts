@@ -14,17 +14,9 @@ export type Message = PinStateMessage;
  * Message generating functions.
  */
 
-export function pinState(id: number,
-                         direction: PinDirection,
-                         value: PinValue = 0,
-                         resistor: PinResistor = 'NONE') {
+export function pinState(pin: Pin) {
   return JSON.stringify({
     type: 'pin_state',
-    payload: {
-      id,
-      value,
-      direction,
-      resistor
-    }
+    payload: pin
   });
 }

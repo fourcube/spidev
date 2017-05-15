@@ -55,8 +55,8 @@ export class WsService {
     });
   }
 
-  updatePin(pin) {
-    this.ws.send(pinState(pin.id, pin.state));
+  updatePin(pin: Pin) {
+    this.ws.send(pinState(pin));
   }
 
   private updatePinState(currentState: PinStateMap, update: Pin): PinStateMap {
