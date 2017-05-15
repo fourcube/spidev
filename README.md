@@ -7,3 +7,6 @@ A browser-based development environment and experimentation playground for Raspb
 npm install && pushd server && npm install && popd
 npm start
 ```
+
+Open [http://localhost:4200]() to view the application.
+
