@@ -24,9 +24,4 @@ export class PinConfigComponent implements AfterViewInit {
         this.wsService.updatePin(p);
       });
   }
-
-  updateForm() {
-    console.log(arguments);
-  }
-
 }

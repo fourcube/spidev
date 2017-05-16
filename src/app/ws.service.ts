@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject, Observable } from 'rxjs/Rx';
+import { Message, pinState } from 'messages';
 import { Pin, PinState } from 'model';
-import { pinState, Message } from 'messages';
+import { BehaviorSubject, Observable } from 'rxjs/Rx';
 
 type PinStateMap = Map<number, Pin>;
 
