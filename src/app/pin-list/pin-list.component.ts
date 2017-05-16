@@ -20,8 +20,8 @@ export class PinListComponent implements OnInit {
     this.pinClicked.emit(pin);
   }
   pinResCode(pin: Pin): string {
-    if (pin.resistor === 'NONE') { return '' };
-    if (pin.resistor === 'PULL_UP') { return 'U' };
-    if (pin.resistor === 'PULL_DOWN') { return 'D' };
+    if (pin.resistor === 'NONE') { return ''; };
+    if (pin.resistor === 'PULL_UP') { return 'U'; };
+    if (pin.resistor === 'PULL_DOWN') { return 'D'; };
   }
 }
