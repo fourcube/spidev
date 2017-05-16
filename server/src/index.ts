@@ -1,27 +1,30 @@
 // import 'rpio';
 // console.log("Starting RPIO.");
 
-import * as WebSocket from 'ws';
 import Lowdb = require('lowdb');
-import { pinState, Message } from "../../src/messages";
-import { Gpio } from "./gpio";
+import log = require('winston');
 
-const db = new Lowdb("db.json");
+import * as WebSocket from 'ws';
+
+import { Message, pinState } from '../../src/messages';
+import { Gpio } from './gpio';
+
+const db = new Lowdb('db.json');
 
 const gpio = new Gpio();
 
 const wss = new WebSocket.Server({
   perMessageDeflate: false,
-  port: 8080
+  port: 8080,
 });
 
 wss.on('connection', (ws) => {
-  console.log("Connected.");
+  log.info('New connection.');
 
   ws.on('message', (message) => {
-    const data = <Message>JSON.parse(message);
-    switch(data.type) {
-      case "pin_state":
+    const data = JSON.parse(message) as Message;
+    switch (data.type) {
+      case 'pin_state':
 
       const pin = data.payload;
       gpio.update(pin);
@@ -33,12 +36,11 @@ wss.on('connection', (ws) => {
   });
 
   ws.on('close', (code, message) => {
-    console.log("Closed", message, "(", code, ")");
+    log.info('Closed', {message, code});
   });
 
   gpio.getState().pins.forEach((p) => {
     ws.send(pinState(p));
   });
-
 
 });

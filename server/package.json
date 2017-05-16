@@ -6,6 +6,7 @@
   "types": "lib/index",
   "scripts": {
     "start": "npm run build:live",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts"
   },
   "keywords": [],
@@ -18,12 +19,15 @@
     "@types/ws": "0.0.41",
     "nodemon": "^1.11.0",
     "ts-node": "^3.0.4",
+    "tslint": "^5.2.0",
     "typescript": "^2.3.2"
   },
   "dependencies": {
+    "@types/winston": "^2.3.2",
     "detect-rpi": "^1.0.1",
     "lowdb": "^0.16.2",
     "rpio": "^0.9.16",
+    "winston": "^2.3.1",
     "ws": "^2.3.1"
   },
   "optionalDependencies": {

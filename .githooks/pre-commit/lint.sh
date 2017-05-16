@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-ng lint
+ng lint && pushd server && npm run lint && popd
