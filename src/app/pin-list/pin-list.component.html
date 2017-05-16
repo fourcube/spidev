@@ -2,5 +2,7 @@
 <ul class="pin-list">
   <li class="pin" [ngClass]="{active: pin.value === 'HIGH', selected: pin === selectedPin}" *ngFor="let pin of pins" (click)="clickPin(pin)">
     {{pin.id}}
+    <span class="pinmarker p-dir">{{pin.direction=='IN'?'I':'O'}}</span>
+    <span class="pinmarker p-res">{{pinResCode(pin)}}</span>
   </li>
 </ul>
