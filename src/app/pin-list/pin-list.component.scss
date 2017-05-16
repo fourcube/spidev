@@ -13,6 +13,7 @@ ul {
     width: 2rem;
     height: 2rem;
     line-height: 2rem;
+    font-family: Courier New, Courier, monospace;
 
     cursor: pointer;
     text-align: center;
@@ -45,7 +46,6 @@ ul {
     .pinmarker {
       position: absolute;
       font-size: 8px;
-      font-family: Courier New, Courier, monospace;
       line-height: 8px;
       &.p-dir {
         top: 3px;
