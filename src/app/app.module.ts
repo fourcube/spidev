@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { WsService } from 'app/ws.service';
 import { PinListComponent } from './pin-list/pin-list.component';
 import { PinConfigComponent } from './pin-config/pin-config.component';
+import { PinComponent } from './pin/pin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PinListComponent,
-    PinConfigComponent
+    PinConfigComponent,
+    PinComponent
   ],
   imports: [
     BrowserModule,
