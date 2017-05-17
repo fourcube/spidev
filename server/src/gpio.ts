@@ -4,6 +4,7 @@ const ZERO_PINS: Pin[] = [];
 
 for (let i = 1; i <= 40; i++) {
   ZERO_PINS.push({
+    color: '#ccc',
     direction: 'IN',
     id: i,
     resistor: 'NONE',

@@ -2,6 +2,10 @@
 <form #form="ngForm">
   <h3>Your are editing pin #{{pin.id}}</h3>
   <div>
+    <label for="color">Pin Color</label>
+    <input type="color" name="color" [(ngModel)]="pin.color" value="#cccccc">
+  </div>
+  <div>
     <label for="value_low">Low (0)</label>
     <input type="radio" id="value_low" name="value" [(ngModel)]="pin.value" value="LOW">
     <label for="value_high">High (1)</label>
