@@ -1,4 +1,4 @@
-import { addCommand, Message, pinState, removeCommand } from '../../src/messages';
+import { addCommand, jsonResponse, Message, pinState, removeCommand } from '../../src/messages';
 import { Command } from '../../src/model';
 import { CommandService } from './command';
 import { Gpio } from './gpio';
@@ -36,14 +36,23 @@ wss.on('connection', (ws) => {
         commandService.enqueue(newCommand);
         // TODO: Commands should only run when the user clicks "run"
         commandService.execute();
-        ws.send(addCommand(newCommand));
+        ws.send(jsonResponse('all_commands', commandService.commands));
+
         break;
 
       case 'remove_command':
         const toBeDeleted = data.payload as Command;
 
         commandService.remove(toBeDeleted.id);
-        ws.send(removeCommand(toBeDeleted));
+        ws.send(jsonResponse('all_commands', commandService.commands));
+
+        break;
+
+      case 'reorder_command':
+        const reorderOp = data.payload;
+        commandService.reorder(reorderOp);
+        ws.send(jsonResponse('all_commands', commandService.commands));
+
         break;
 
       default:
@@ -55,8 +64,16 @@ wss.on('connection', (ws) => {
     log.info('Closed', { message, code });
   });
 
+  clientSetup(ws);
+});
+
+/**
+ * Initialize the client state.
+ */
+function clientSetup(ws: WebSocket) {
   gpio.getState().pins.forEach((p) => {
     ws.send(pinState(p));
   });
+  ws.send(jsonResponse('all_commands', commandService.commands));
 
-});
+}
