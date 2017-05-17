@@ -1,5 +1,6 @@
 <h2>Pin Configuration</h2>
 <form #form="ngForm">
+  <h3>Your are editing pin #{{pin.id}}</h3>
   <div>
     <label for="value_low">Low (0)</label>
     <input type="radio" id="value_low" name="value" [(ngModel)]="pin.value" value="LOW">
