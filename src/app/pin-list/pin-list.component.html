@@ -1,8 +1,6 @@
 <h2>Pin Status</h2>
 <ul class="pin-list">
-  <li class="pin" [ngClass]="{active: pin.value === 'HIGH', selected: pin === selectedPin}" *ngFor="let pin of pins" (click)="clickPin(pin)">
-    {{pin.id}}
-    <span class="pinmarker p-dir">{{pin.direction=='IN'?'I':'O'}}</span>
-    <span class="pinmarker p-res">{{pinResCode(pin)}}</span>
+  <li class="pin" *ngFor="let pin of pins">
+    <sv-pin [pin]="pin" [isSelected]="pin === selectedPin" (click)="clickPin(pin)"></sv-pin>
   </li>
 </ul>

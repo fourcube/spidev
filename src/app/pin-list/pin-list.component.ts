@@ -8,8 +8,8 @@ import { Pin } from 'model';
 })
 export class PinListComponent implements OnInit {
   @Input() pins: Pin[];
-  @Input() selectedPin: Pin;
-  @Output() pinClicked: EventEmitter<Pin> = new EventEmitter();
+  selectedPin: Pin;
+  @Output() pinSelected: EventEmitter<Pin> = new EventEmitter();
 
   constructor() { }
 
@@ -17,11 +17,13 @@ export class PinListComponent implements OnInit {
   }
 
   clickPin(pin: Pin) {
-    this.pinClicked.emit(pin);
-  }
-  pinResCode(pin: Pin): string {
-    if (pin.resistor === 'NONE') { return ''; };
-    if (pin.resistor === 'PULL_UP') { return 'U'; };
-    if (pin.resistor === 'PULL_DOWN') { return 'D'; };
+    if (this.selectedPin === pin) {
+      this.selectedPin = null;
+      this.pinSelected.emit(null);
+      return;
+    }
+
+    this.pinSelected.emit(pin);
+    this.selectedPin = pin;
   }
 }

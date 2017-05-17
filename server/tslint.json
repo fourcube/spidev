@@ -5,7 +5,9 @@
     ],
     "jsRules": {},
     "rules": {
-      "quotemark": [true, "single", "avoid-escape"]
+      "quotemark": [true, "single", "avoid-escape"],
+      "no-switch-case-fall-through": false,
+      "switch-default": true
     },
     "rulesDirectory": []
 }

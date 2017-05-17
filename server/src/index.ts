@@ -32,6 +32,12 @@ wss.on('connection', (ws) => {
       ws.send(pinState(pin));
 
       break;
+      case 'command':
+      log.warn('Command message not implemented yet.');
+      break;
+
+      default:
+      log.warn('Unknown message', {message});
     }
   });
 

@@ -8,7 +8,11 @@ export interface PinStateMessage {
   payload: Pin;
 }
 
-export type Message = PinStateMessage;
+export interface CommandMessage {
+  type: 'command';
+}
+
+export type Message = PinStateMessage | CommandMessage;
 
 /**
  * Message generating functions.

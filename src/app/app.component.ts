@@ -17,12 +17,8 @@ export class AppComponent {
       .map(status => status.pins);
   }
 
-  clickPin(pin: Pin) {
-    if (this.selectedPin === pin) {
-      this.selectedPin = null;
-      return;
-    }
-
+  showConfig(pin) {
     this.selectedPin = pin;
   }
+
 }
