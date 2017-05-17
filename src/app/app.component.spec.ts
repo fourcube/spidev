@@ -1,3 +1,9 @@
+import { BrowserTestingModule } from '@angular/platform-browser/testing';
+import { WsService } from './ws.service';
+import { FormsModule } from '@angular/forms';
+import { PinConfigComponent } from './pin-config/pin-config.component';
+import { PinComponent } from './pin/pin.component';
+import { PinListComponent } from './pin-list/pin-list.component';
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -7,11 +13,18 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        FormsModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        PinListComponent,
+        PinComponent,
+        PinConfigComponent
       ],
+      providers: [
+        WsService
+      ]
     }).compileComponents();
   }));
 
@@ -19,18 +32,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
-
-  it(`should have as title 'sv works!'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('sv works!');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('sv works!');
   }));
 });

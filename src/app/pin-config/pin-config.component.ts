@@ -18,6 +18,7 @@ export class PinConfigComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.form.control.valueChanges
+      .distinctUntilChanged()
       .debounceTime(50)
       .subscribe((p: Pin) => {
         p.id = this.pin.id;
