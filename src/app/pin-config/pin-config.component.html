@@ -1,28 +1,29 @@
 <h2>Pin Configuration</h2>
 <form #form="ngForm">
-  <h3>Your are editing pin #{{pin.id}}</h3>
-  <div>
+  <h3>Your are editing pin #{{pin.id}}</h3>uiz8
+  <fieldset>
+    <legend>Colors</legend>
     <label for="color">Pin Color</label>
     <input type="color" name="color" [(ngModel)]="pin.color" value="#cccccc">
-  </div>
-  <div>
+  </fieldset>
+  <fieldset>
+    <legend>Value</legend>
     <label for="value_low">Low (0)</label>
     <input type="radio" id="value_low" name="value" [(ngModel)]="pin.value" value="LOW">
     <label for="value_high">High (1)</label>
     <input type="radio" id="value_high" name="value" [(ngModel)]="pin.value" value="HIGH">
-  </div>
-  <div>
+  </fieldset>
+  <fieldset>
+    <legend>Direction</legend>
     <label for="in">In</label>
     <input type="radio" id="in" name="direction" [(ngModel)]="pin.direction" value="IN">
     <label for="out">Out</label>
     <input type="radio" id="out" name="direction" [(ngModel)]="pin.direction" value="OUT">
-  </div>
-  <div>
-    <label for="resistor">Widerstand</label>
-    <select name="resistor" [(ngModel)]="pin.resistor">
-      <option selected value="NONE">-</option>
-      <option value="PULL_UP">Pull-up</option>
-      <option value="PULL_DOWN">Pull-down</option>
-    </select>
-  </div>
+  </fieldset>
+  <label for="resistor">Widerstand</label>
+  <select name="resistor" [(ngModel)]="pin.resistor">
+    <option selected value="NONE">-</option>
+    <option value="PULL_UP">Pull-up</option>
+    <option value="PULL_DOWN">Pull-down</option>
+  </select>
 </form>
