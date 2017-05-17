@@ -12,3 +12,27 @@ export interface Pin {
 export interface PinState {
   pins: Pin[];
 }
+
+export interface BasicCommand {
+  id: number;
+  type: string;
+  arguments: any[];
+}
+
+export interface ReadSpiCommand extends BasicCommand {
+  type: 'read_spi';
+}
+
+export interface WriteSpiCommand extends BasicCommand {
+  type: 'write_spi';
+}
+
+export interface WaitInterruptCommand extends BasicCommand {
+  type: 'wait_interrupt';
+}
+
+export type Command = ReadSpiCommand | WriteSpiCommand | WaitInterruptCommand;
+
+export interface CommandResult extends BasicCommand {
+  results: any[];
+}

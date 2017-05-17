@@ -1,3 +1,4 @@
+import { CommandService } from './command';
 // import 'rpio';
 // console.log("Starting RPIO.");
 
@@ -12,6 +13,7 @@ import { Gpio } from './gpio';
 const db = new Lowdb('db.json');
 
 const gpio = new Gpio();
+const commandService = new CommandService(gpio);
 
 const wss = new WebSocket.Server({
   perMessageDeflate: false,
@@ -25,24 +27,25 @@ wss.on('connection', (ws) => {
     const data = JSON.parse(message) as Message;
     switch (data.type) {
       case 'pin_state':
+        const pin = data.payload;
+        gpio.update(pin);
 
-      const pin = data.payload;
-      gpio.update(pin);
+        ws.send(pinState(pin));
 
-      ws.send(pinState(pin));
-
-      break;
+        break;
       case 'command':
-      log.warn('Command message not implemented yet.');
-      break;
+        commandService.enqueue(data.payload);
+        // TODO: Commands should only run when the user clicks "run"
+        commandService.execute();
+        break;
 
       default:
-      log.warn('Unknown message', {message});
+        log.warn('Unknown message', { message });
     }
   });
 
   ws.on('close', (code, message) => {
-    log.info('Closed', {message, code});
+    log.info('Closed', { message, code });
   });
 
   gpio.getState().pins.forEach((p) => {
