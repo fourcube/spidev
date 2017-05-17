@@ -1,14 +1,12 @@
+import { addCommand, Message, pinState, removeCommand } from '../../src/messages';
+import { Command } from '../../src/model';
 import { CommandService } from './command';
-// import 'rpio';
-// console.log("Starting RPIO.");
-
+import { Gpio } from './gpio';
 import Lowdb = require('lowdb');
 import log = require('winston');
-
 import * as WebSocket from 'ws';
-
-import { Message, pinState } from '../../src/messages';
-import { Gpio } from './gpio';
+// import 'rpio';
+// console.log("Starting RPIO.");
 
 const db = new Lowdb('db.json');
 
@@ -33,10 +31,19 @@ wss.on('connection', (ws) => {
         ws.send(pinState(pin));
 
         break;
-      case 'command':
-        commandService.enqueue(data.payload);
+      case 'add_command':
+        const newCommand = data.payload;
+        commandService.enqueue(newCommand);
         // TODO: Commands should only run when the user clicks "run"
         commandService.execute();
+        ws.send(addCommand(newCommand));
+        break;
+
+      case 'remove_command':
+        const toBeDeleted = data.payload as Command;
+
+        commandService.remove(toBeDeleted.id);
+        ws.send(removeCommand(toBeDeleted));
         break;
 
       default:

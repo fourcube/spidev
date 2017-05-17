@@ -11,6 +11,10 @@ export class CommandService {
     this.queue.push(command);
   }
 
+  public remove(id: number) {
+    this.queue = this.queue.filter((c) => c.id !== id);
+  }
+
   public execute() {
     this.queue.forEach((command) => {
       log.info('executing', { command });

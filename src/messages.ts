@@ -8,9 +8,17 @@ export interface PinStateMessage {
   payload: Pin;
 }
 
-export interface CommandMessage {
-  type: 'command';
+export interface AddCommandMessage {
+  type: 'add_command';
   payload: Command;
+}
+
+export interface RemoveCommandMessage {
+  type: 'remove_command';
+  /**
+   * The command id to remove.
+   */
+  payload: {id: number};
 }
 
 export interface CommandResultMessage {
@@ -18,7 +26,7 @@ export interface CommandResultMessage {
   payload: CommandResult;
 }
 
-export type Message = PinStateMessage | CommandMessage | CommandResultMessage;
+export type Message = PinStateMessage | AddCommandMessage | CommandResultMessage | RemoveCommandMessage;
 
 /**
  * Message generating functions.
@@ -28,12 +36,16 @@ export function pinState(pin: Pin) {
   return jsonResponse('pin_state', pin);
 }
 
-export function command(command: Command) {
-  return jsonResponse('command', command);
+export function addCommand(command: Command) {
+  return jsonResponse('add_command', command);
 }
 
 export function commandResult(command: Command) {
   return jsonResponse('command_result', command);
+}
+
+export function removeCommand(command: Command) {
+  return jsonResponse('remove_command', {id: command.id});
 }
 
 function jsonResponse(messageType: string, payload: any) {
