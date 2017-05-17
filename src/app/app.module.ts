@@ -9,13 +9,19 @@ import { WsService } from 'app/ws.service';
 import { PinListComponent } from './pin-list/pin-list.component';
 import { PinConfigComponent } from './pin-config/pin-config.component';
 import { PinComponent } from './pin/pin.component';
+import { CommandListComponent } from './command-list/command-list.component';
+import { CommandComponent } from './command/command.component';
+import { CommandConfigComponent } from './command-config/command-config.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PinListComponent,
     PinConfigComponent,
-    PinComponent
+    PinComponent,
+    CommandListComponent,
+    CommandComponent,
+    CommandConfigComponent
   ],
   imports: [
     BrowserModule,
