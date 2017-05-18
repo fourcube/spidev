@@ -19,10 +19,13 @@
     <label for="out">Out</label>
     <input type="radio" id="out" name="direction" [(ngModel)]="pin.direction" value="OUT">
   </fieldset>
+  <fieldset>
+    <legend>Resistor</legend>
   <label for="resistor">Widerstand</label>
   <select name="resistor" [(ngModel)]="pin.resistor">
     <option selected value="NONE">-</option>
     <option value="PULL_UP">Pull-up</option>
     <option value="PULL_DOWN">Pull-down</option>
   </select>
+  </fieldset>
 </form>

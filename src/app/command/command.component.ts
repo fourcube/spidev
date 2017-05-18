@@ -34,4 +34,13 @@ export class CommandComponent implements OnInit {
 
     return '0x' + hex;
   }
+  posDown(command: Command) {
+    console.log(`pos down ${command.id}`);
+  }
+  posUp(command: Command) {
+    console.log(`pos up ${command.id}`);
+  }
+  deleteCommand(command: Command) {
+    console.log(`delete command ${command.id}`);
+  }
 }
