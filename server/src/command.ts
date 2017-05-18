@@ -42,9 +42,9 @@ export class CommandService {
 
     switch (op.direction) {
       case 'UP':
-        this.moveCommand(commandIndex, commandIndex + 1);
-      case 'DOWN':
         this.moveCommand(commandIndex, commandIndex - 1);
+      case 'DOWN':
+        this.moveCommand(commandIndex, commandIndex + 1);
       default:
     }
   }
