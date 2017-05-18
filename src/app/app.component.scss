@@ -22,8 +22,13 @@ aside {
 }
 
 .ws-indicator {
-  color: red;
-  &.active {
+  .fa-bolt {
+    color: black;
+  }
+  .fa-ban {
+    color: red;
+  }
+  .fa-circle-thin {
     color: green;
   }
 }

@@ -1,4 +1,7 @@
-<span [ngClass]="{'active':wsConnection===1}" class="ws-indicator"><i class="fa fa-bolt " aria-hidden="true"></i></span>
+<span class="ws-indicator fa-stack">
+  <i class="fa fa-bolt fa-stack-1x" aria-hidden="true"></i>
+  <i [ngClass]="{'fa-circle-thin':wsConnection===1, 'fa-ban':wsConnection!=1}" class="fa fa-stack-2x" aria-hidden="true"></i>
+</span>
 <main>
   <sv-pin-list [pins]="pins | async" (pinSelected)="showConfig($event)"></sv-pin-list>
   <hr>
