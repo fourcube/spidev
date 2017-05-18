@@ -11,10 +11,9 @@ export class CommandComponent implements OnInit {
   @Input() command: Command;
   @Input() index: number;
 
-  constructor(private wsService: WsService) { }
+  constructor(private wsService: WsService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   renderArguments(): string {
     const args = this.command.arguments;

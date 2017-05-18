@@ -96,4 +96,8 @@ export class WsService {
     return new WebSocket('ws://' + window.location.hostname + ':8080');
   }
 
+  public getWSState(): number {
+    return this.ws.readyState;
+  }
+
 }

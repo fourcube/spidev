@@ -1,3 +1,4 @@
+<span [ngClass]="{'active':wsConnection===1}" class="ws-indicator"><i class="fa fa-bolt " aria-hidden="true"></i></span>
 <main>
   <sv-pin-list [pins]="pins | async" (pinSelected)="showConfig($event)"></sv-pin-list>
   <hr>

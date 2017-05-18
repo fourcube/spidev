@@ -20,3 +20,10 @@ aside {
   grid-column-start: 2;
   grid-column-end: 3;
 }
+
+.ws-indicator {
+  color: red;
+  &.active {
+    color: green;
+  }
+}
