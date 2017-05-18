@@ -4,6 +4,7 @@
     <legend>Colors</legend>
     <label for="color">Pin Color</label>
     <input type="color" name="color" [(ngModel)]="pin.color" value="#cccccc">
+    <button (click)="pin.color='#cccccc'" >Reset</button>
   </fieldset>
   <fieldset>
     <legend>Value</legend>

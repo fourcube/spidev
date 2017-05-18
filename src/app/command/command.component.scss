@@ -15,5 +15,8 @@
         &:last-of-type {
             margin-right: 0;
         }
+        &.button-delete {
+            background-color: red;
+        }
     }
 }
