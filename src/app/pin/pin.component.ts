@@ -16,7 +16,16 @@ export class PinComponent implements OnInit {
   }
 
   useContrast(color: string): boolean {
-    return parseInt((color || '#fff').substring(1), 16) <= 0xffffff / 2;
+    if (color.length < 6) { return false; }
+
+    const rgb = color.substring(1);
+    const r = parseInt(rgb.substring(0, 2), 16);
+    const g = parseInt(rgb.substring(2, 4), 16);
+    const b = parseInt(rgb.substring(4, 6), 16);
+
+    const brightness = Math.sqrt(0.299 * Math.pow(r, 2) + 0.586 * Math.pow(g, 2) + 0.114 * Math.pow(b, 2));
+
+    return brightness < 128;
   }
 
   pinResCode(pin: Pin): string {

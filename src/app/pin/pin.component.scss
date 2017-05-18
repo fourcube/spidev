@@ -10,7 +10,9 @@
         margin-bottom: 10px; //border-radius: 50%;
         background-color: #ccc;
         &.active {
-            background-color: lime;
+            box-sizing: border-box;
+            text-decoration: underline;
+
         }
         &.selected {
             box-shadow: 0px 0px 5px #000;
