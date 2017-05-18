@@ -1,0 +1,19 @@
+:host {
+    display: flex;
+    padding: 5px;
+    .command-type {
+        width: 60px;
+        background-color: lightgrey;
+        font-size: 12px;
+        line-height: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    button {
+        margin-right: 1px;
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+}
