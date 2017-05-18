@@ -4,7 +4,7 @@
   <button (click)="createCommand('wait_interrupt')">+ wait_interrupt</button>
 </header>
 <ul>
-  <li *ngFor="let command of commands">
-    <sv-command [command]="command"></sv-command>
+  <li *ngFor="let command of commands; let i = index">
+    <sv-command [command]="command" [index]="i"></sv-command>
   </li>
 </ul>

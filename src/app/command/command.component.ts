@@ -9,6 +9,7 @@ import { Command } from 'model';
 })
 export class CommandComponent implements OnInit {
   @Input() command: Command;
+  @Input() index: number;
 
   constructor(private wsService: WsService) { }
 

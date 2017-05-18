@@ -1,4 +1,4 @@
-<span class="command-type">{{command.type === "read_spi"?"READ":(command.type === "write_spi"?"WRITE":"WAIT")}}</span>
+<span class="command-index">{{index+1}}</span><span class="command-type">{{command.type === "read_spi"?"READ":(command.type === "write_spi"?"WRITE":"WAIT")}}</span>
 <input type="text" [value]="renderArguments()">
 <button (click)="posUp(command)"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i></button>
 <button (click)="posDown(command)"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></button>
