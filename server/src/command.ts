@@ -3,15 +3,16 @@ import { Command } from '../../src/model';
 import log = require('winston');
 import { Gpio } from './gpio';
 
+let COMMAND_ID = 0;
 const INITIAL_COMMAND_QUEUE: Command[] = [
   {
     arguments: [0x00],
-    id: 0,
+    id: COMMAND_ID++,
     type: 'read_spi',
   },
   {
     arguments: [0x01, 0xff],
-    id: 1,
+    id: COMMAND_ID++,
     type: 'write_spi',
   },
 ];
@@ -24,6 +25,7 @@ export class CommandService {
   }
 
   public enqueue(commands: Command[]) {
+    commands.forEach((c) => c.id = COMMAND_ID++);
     this.queue = this.queue.concat(commands);
   }
 

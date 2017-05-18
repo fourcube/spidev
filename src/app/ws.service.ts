@@ -1,4 +1,4 @@
-import { addCommand } from '../messages';
+import { addCommand, removeCommand } from '../messages';
 import { Injectable } from '@angular/core';
 import { Message, pinState } from 'messages';
 import { Pin, PinState, Command } from 'model';
@@ -39,6 +39,10 @@ export class WsService {
 
   public addCommand(command: Command) {
     this.ws.send(addCommand([command]));
+  }
+
+  public removeCommand(command: Command) {
+    this.ws.send(removeCommand(command));
   }
 
   init() {
