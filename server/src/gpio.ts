@@ -1,24 +1,11 @@
 import { Pin, PinState } from '../../src/model';
-
-const ZERO_PINS: Pin[] = [];
-
-for (let i = 1; i <= 40; i++) {
-  ZERO_PINS.push({
-    color: '#cccccc',
-    direction: 'IN',
-    id: i,
-    resistor: 'NONE',
-    value: 'LOW',
-  });
-}
+import Lowdb = require('lowdb');
 
 export class Gpio {
   private currentState: PinState;
 
-  constructor() {
-    this.currentState = {
-      pins: ZERO_PINS,
-    };
+  constructor(private db: Lowdb) {
+    this.currentState = db.get('pinState').value() as PinState;
   }
 
   /**
@@ -49,5 +36,7 @@ export class Gpio {
       }
       return p;
     });
+
+    this.db.set('pinState', this.currentState).write();
   }
 }

@@ -1,6 +1,7 @@
-import { addCommand, jsonResponse, Message, pinState, removeCommand } from '../../src/messages';
+import { jsonResponse, Message, pinState } from '../../src/messages';
 import { Command } from '../../src/model';
 import { CommandService } from './command';
+import { ZERO_PINS } from './defaults';
 import { Gpio } from './gpio';
 import Lowdb = require('lowdb');
 import log = require('winston');
@@ -9,9 +10,13 @@ import * as WebSocket from 'ws';
 // console.log("Starting RPIO.");
 
 const db = new Lowdb('db.json');
+db.defaults({
+  commands: [],
+  pinState: {pins: ZERO_PINS},
+}).write();
 
-const gpio = new Gpio();
-const commandService = new CommandService(gpio);
+const gpio = new Gpio(db);
+const commandService = new CommandService(gpio, db);
 
 const wss = new WebSocket.Server({
   perMessageDeflate: false,
@@ -26,6 +31,7 @@ wss.on('connection', (ws) => {
     switch (data.type) {
       case 'pin_state':
         const pin = data.payload;
+
         gpio.update(pin);
 
         ws.send(pinState(pin));

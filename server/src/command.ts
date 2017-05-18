@@ -1,36 +1,35 @@
 import { ReorderOp } from '../../src/messages';
-import { Command } from '../../src/model';
+import { Command, DbCommand } from '../../src/model';
 import log = require('winston');
 import { Gpio } from './gpio';
+import Lowdb = require('lowdb');
 
 let COMMAND_ID = 0;
-const INITIAL_COMMAND_QUEUE: Command[] = [
-  {
-    arguments: [0x00],
-    id: COMMAND_ID++,
-    type: 'read_spi',
-  },
-  {
-    arguments: [0x01, 0xff],
-    id: COMMAND_ID++,
-    type: 'write_spi',
-  },
-];
 
 export class CommandService {
   private queue: Command[];
 
-  constructor(private gpio: Gpio) {
-    this.queue = INITIAL_COMMAND_QUEUE.slice(0);
+  constructor(private gpio: Gpio,
+              private db: Lowdb) {
+    this.updateQueue();
   }
 
   public enqueue(commands: Command[]) {
-    commands.forEach((c) => c.id = COMMAND_ID++);
-    this.queue = this.queue.concat(commands);
+    commands.forEach((c) => {
+      c.id = COMMAND_ID++;
+    });
+
+    this.db.get('commands').push(commands).write();
+    this.updateQueue();
   }
 
   public remove(id: number) {
-    this.queue = this.queue.filter((c) => c.id !== id);
+
+    this.db.get('commands')
+      .remove({id})
+      .write();
+
+    this.updateQueue();
   }
 
   public reorder(op: ReorderOp) {
@@ -73,6 +72,10 @@ export class CommandService {
 
   get commands() {
     return this.queue;
+  }
+
+  private updateQueue() {
+    this.queue = this.db.get('commands', []).value() as Command[];
   }
 
   private read_spi(args: any[]) {

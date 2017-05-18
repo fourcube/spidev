@@ -7,7 +7,7 @@
   "scripts": {
     "start": "npm run build:live",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts"
+    "build:live": "nodemon --ignore db.json --exec ./node_modules/.bin/ts-node -- ./src/index.ts"
   },
   "keywords": [],
   "author": "",
