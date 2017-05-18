@@ -10,7 +10,7 @@ export interface PinStateMessage {
 
 export interface AddCommandMessage {
   type: 'add_command';
-  payload: Command;
+  payload: Command[];
 }
 
 export interface RemoveCommandMessage {
@@ -35,12 +35,18 @@ export interface CommandResultMessage {
   payload: CommandResult;
 }
 
+export interface AllCommandsMessage {
+  type: 'all_commands';
+  payload: Command[];
+}
+
 export type Message =
   PinStateMessage |
   AddCommandMessage |
   CommandResultMessage |
   RemoveCommandMessage |
-  ReorderCommandMessage;
+  ReorderCommandMessage |
+  AllCommandsMessage;
 
 /**
  * Message generating functions.

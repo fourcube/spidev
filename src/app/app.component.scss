@@ -2,19 +2,21 @@
   display: grid;
 
   grid-template-columns: auto auto auto;
+  grid-auto-flow: row;
   grid-gap: 10px;
 }
 
-sv-pin-list {
-  /* autoprefixer: off */
-  grid-row-start: 1;
-  grid-row-end: 2;
+main {
+ /* autoprefixer: off */
+  grid-column-start: 1;
+  grid-column-end: 2;
+
+  sv-pin-list {
+  }
 }
 
-sv-pin-config {
-   /* autoprefixer: off */
-  //grid-column-start: 2;
-  //grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
+aside {
+  /* autoprefixer: off */
+  grid-column-start: 2;
+  grid-column-end: 3;
 }

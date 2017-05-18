@@ -1,3 +1,10 @@
-<p>
-  command-list works!
-</p>
+<header>
+  <button (click)="createCommand('read_spi')">+ read_spi</button>
+  <button (click)="createCommand('write_spi')">+ write_spi</button>
+  <button (click)="createCommand('wait_interrupt')">+ wait_interrupt</button>
+</header>
+<ul>
+  <li *ngFor="let command of commands">
+    <sv-command [command]="command"></sv-command>
+  </li>
+</ul>

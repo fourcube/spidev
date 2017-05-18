@@ -13,9 +13,11 @@ export interface PinState {
   pins: Pin[];
 }
 
+export type CommandType = 'read_spi' | 'write_spi' | 'wait_interrupt';
+
 export interface BasicCommand {
   id: number;
-  type: string;
+  type: CommandType;
   arguments: any[];
 }
 

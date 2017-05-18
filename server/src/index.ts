@@ -74,6 +74,6 @@ function clientSetup(ws: WebSocket) {
   gpio.getState().pins.forEach((p) => {
     ws.send(pinState(p));
   });
-  ws.send(jsonResponse('all_commands', commandService.commands));
 
+  ws.send(jsonResponse('all_commands', commandService.commands));
 }

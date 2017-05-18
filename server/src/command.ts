@@ -3,13 +3,28 @@ import { Command } from '../../src/model';
 import log = require('winston');
 import { Gpio } from './gpio';
 
+const INITIAL_COMMAND_QUEUE: Command[] = [
+  {
+    arguments: [0x00],
+    id: 0,
+    type: 'read_spi',
+  },
+  {
+    arguments: [0x01, 0xff],
+    id: 1,
+    type: 'write_spi',
+  },
+];
+
 export class CommandService {
-  private queue: Command[] = [];
+  private queue: Command[];
 
-  constructor(private gpio: Gpio) {}
+  constructor(private gpio: Gpio) {
+    this.queue = INITIAL_COMMAND_QUEUE.slice(0);
+  }
 
-  public enqueue(command: Command) {
-    this.queue.push(command);
+  public enqueue(commands: Command[]) {
+    this.queue = this.queue.concat(commands);
   }
 
   public remove(id: number) {
@@ -52,7 +67,6 @@ export class CommandService {
 
       return;
     });
-    this.queue.length = 0;
   }
 
   get commands() {

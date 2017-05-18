@@ -1,3 +1,11 @@
-<sv-pin-list [pins]="pins | async" (pinSelected)="showConfig($event)"></sv-pin-list>
-<sv-pin-config [pin]="selectedPin" *ngIf="selectedPin"></sv-pin-config>
+<main>
+  <sv-pin-list [pins]="pins | async" (pinSelected)="showConfig($event)"></sv-pin-list>
+  <hr>
+  <sv-command-list [commands]="commands | async"></sv-command-list>
+</main>
+<aside>
+  <sv-pin-config [pin]="selectedPin" *ngIf="selectedPin"></sv-pin-config>
+</aside>
+
 <router-outlet></router-outlet>
+
