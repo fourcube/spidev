@@ -1,3 +1,4 @@
+import { WsService } from '../ws.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Command } from 'model';
 
@@ -9,7 +10,7 @@ import { Command } from 'model';
 export class CommandComponent implements OnInit {
   @Input() command: Command;
 
-  constructor() { }
+  constructor(private wsService: WsService) { }
 
   ngOnInit() {
   }
@@ -35,12 +36,12 @@ export class CommandComponent implements OnInit {
     return '0x' + hex;
   }
   posDown(command: Command) {
-    console.log(`pos down ${command.id}`);
+    this.wsService.moveComandDown(command);
   }
   posUp(command: Command) {
-    console.log(`pos up ${command.id}`);
+    this.wsService.moveComandUp(command);
   }
   deleteCommand(command: Command) {
-    console.log(`delete command ${command.id}`);
+    this.wsService.removeCommand(command);
   }
 }

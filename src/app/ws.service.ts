@@ -1,4 +1,4 @@
-import { addCommand, removeCommand } from '../messages';
+import { addCommand, removeCommand, reorderCommand } from '../messages';
 import { Injectable } from '@angular/core';
 import { Message, pinState } from 'messages';
 import { Pin, PinState, Command } from 'model';
@@ -43,6 +43,15 @@ export class WsService {
 
   public removeCommand(command: Command) {
     this.ws.send(removeCommand(command));
+  }
+
+  public moveComandUp(command: Command) {
+    this.ws.send(reorderCommand(command, 'UP'));
+  }
+
+
+  public moveComandDown(command: Command) {
+    this.ws.send(reorderCommand(command, 'DOWN'));
   }
 
   init() {
