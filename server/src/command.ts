@@ -1,25 +1,25 @@
 import { ReorderOp } from '../../src/messages';
-import { Command, DbCommand } from '../../src/model';
+import { Command } from '../../src/model';
 import log = require('winston');
 import { Gpio } from './gpio';
 import Lowdb = require('lowdb');
 
-let COMMAND_ID = 0;
-
 export class CommandService {
   private queue: Command[];
+  private commandIdSeq: number;
 
   constructor(private gpio: Gpio,
               private db: Lowdb) {
+    this.commandIdSeq = db.get('commandIdSeq').value() as number;
     this.updateQueue();
   }
 
   public enqueue(commands: Command[]) {
     commands.forEach((c) => {
-      c.id = COMMAND_ID++;
+      c.id = this.genId();
     });
 
-    this.db.get('commands').push(commands).write();
+    this.db.get('commands').push(...commands).write();
     this.updateQueue();
   }
 
@@ -46,6 +46,8 @@ export class CommandService {
         this.moveCommand(commandIndex, commandIndex + 1);
       default:
     }
+
+    this.db.set('commands', this.queue).write();
   }
 
   public execute() {
@@ -97,5 +99,10 @@ export class CommandService {
     }
 
     this.queue.splice(destIndex, 0, this.queue.splice(srcIndex, 1)[0]);
+  }
+  private genId(): number {
+    let id = this.db.get('commandIdSeq').value() as number;
+    this.db.set('commandIdSeq', ++id).write();
+    return id;
   }
 }

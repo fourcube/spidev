@@ -11,6 +11,7 @@ import * as WebSocket from 'ws';
 
 const db = new Lowdb('db.json');
 db.defaults({
+  commandIdSeq: 0,
   commands: [],
   pinState: {pins: ZERO_PINS},
 }).write();
