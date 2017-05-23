@@ -64,6 +64,9 @@ export class CommandService {
         case 'wait_interrupt':
           this.wait_interrupt(command.arguments);
           break;
+        case 'pin_setup':
+          this.pin_setup(command.arguments);
+          break;
         default:
           log.error('unknown command type', { command });
       }
@@ -88,6 +91,14 @@ export class CommandService {
   }
   private wait_interrupt(args: any[]) {
     log.warn('wait_interrupt not implemented yet.');
+  }
+  private pin_setup(args: number[]) {
+    if (args.length < 4) {
+      log.error('invalid number of arguments for pin_setup command', {args});
+    }
+
+    const [idSclk, idMiso, idMosi, idCs] = args;
+    log.warn('pin_setup not implemented yet.');
   }
   private moveCommand(srcIndex: number, destIndex: number) {
     if (destIndex >= this.queue.length) {

@@ -2,7 +2,9 @@
   <button (click)="createCommand('read_spi')">+ read_spi</button>
   <button (click)="createCommand('write_spi')">+ write_spi</button>
   <button (click)="createCommand('wait_interrupt')">+ wait_interrupt</button>
+  <button (click)="createCommand('pin_setup')">+ pin_setup</button>
 </header>
+
 <ul>
   <li *ngFor="let command of commands; let i = index">
     <sv-command [command]="command" [index]="i"></sv-command>

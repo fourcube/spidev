@@ -13,7 +13,7 @@ export interface PinState {
   pins: Pin[];
 }
 
-export type CommandType = 'read_spi' | 'write_spi' | 'wait_interrupt';
+export type CommandType = 'read_spi' | 'write_spi' | 'wait_interrupt' | 'pin_setup';
 
 export interface BasicCommand {
   id: number;
@@ -33,7 +33,11 @@ export interface WaitInterruptCommand extends BasicCommand {
   type: 'wait_interrupt';
 }
 
-export type Command = ReadSpiCommand | WriteSpiCommand | WaitInterruptCommand;
+export interface PinSetupCommand extends BasicCommand {
+  type: 'pin_setup';
+}
+
+export type Command = ReadSpiCommand | WriteSpiCommand | WaitInterruptCommand | PinSetupCommand;
 
 export interface CommandResult extends BasicCommand {
   results: any[];
