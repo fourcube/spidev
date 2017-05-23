@@ -1,5 +1,5 @@
 import { WsService } from '../ws.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Command, CommandType } from 'model';
 
 @Component({
@@ -9,6 +9,7 @@ import { Command, CommandType } from 'model';
 })
 export class CommandListComponent implements OnInit {
   @Input() commands: Command[];
+  @Output() commandSelected: EventEmitter<Command> = new EventEmitter();
 
   constructor(private ws: WsService) { }
 
@@ -21,6 +22,10 @@ export class CommandListComponent implements OnInit {
       id: null,
       type
     } as Command);
+  }
+
+  selectCommand(command: Command) {
+    this.commandSelected.emit(command);
   }
 
 }

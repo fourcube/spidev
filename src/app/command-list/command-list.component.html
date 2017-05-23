@@ -7,6 +7,6 @@
 
 <ul>
   <li *ngFor="let command of commands; let i = index">
-    <sv-command [command]="command" [index]="i"></sv-command>
+    <sv-command [command]="command" [index]="i" (click)="selectCommand(command)"></sv-command>
   </li>
 </ul>

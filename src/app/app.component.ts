@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   pins: Observable<Pin[]>;
   commands: Observable<Command[]>;
   selectedPin: Pin;
+  selectedCommand: Command;
 
   wsConnection: number;
 
@@ -28,7 +29,11 @@ export class AppComponent implements OnInit {
     }, 500);
   }
 
-  showConfig(pin) {
+  showPinConfig(pin) {
     this.selectedPin = pin;
+  }
+
+  showCommandConfig(command) {
+    this.selectedCommand = command;
   }
 }
