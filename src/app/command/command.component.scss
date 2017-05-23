@@ -1,14 +1,15 @@
 :host {
     font-family: Courier New, Courier, monospace;
     display: flex;
-    padding: 5px;
+    padding: 2px;
     cursor: pointer;
+    min-height: 24px;
 
     .command-type {
-        width: 60px;
+        width: 75px;
         background-color: lightgrey;
-        font-size: 12px;
-        line-height: 12px;
+        font-size: 14px;
+        line-height: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
