@@ -27,6 +27,21 @@ export class CommandComponent implements OnInit {
       .reduce((acc, next) => `${acc}, ${next}`);
   }
 
+  renderCommandType(): string {
+    switch (this.command.type) {
+      case 'read_spi':
+        return 'READ';
+      case 'write_spi':
+        return 'WRITE';
+      case 'wait_interrupt':
+        return 'WAIT';
+      case 'pin_setup':
+        return 'PINSETUP';
+      default:
+        return 'UNKNOWN';
+    }
+  }
+
   private asHex(n: number): string {
     const hex = n.toString(16);
     if (hex.length < 2) {

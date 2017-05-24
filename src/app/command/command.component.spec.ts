@@ -25,10 +25,10 @@ describe('CommandComponent', () => {
           useValue: command
         }
       ]
-    })
+    });
     fixture = TestBed.createComponent(CommandComponent);
     component = fixture.componentInstance;
-    let wsService = TestBed.get(WsService);
+    const wsService = TestBed.get(WsService);
   }));
 
   beforeEach(() => {

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Command } from '../../model';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'sv-command-config',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./command-config.component.scss']
 })
 export class CommandConfigComponent implements OnInit {
+  @Input() command: Command;
 
   constructor() { }
 

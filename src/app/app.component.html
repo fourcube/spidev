@@ -3,13 +3,17 @@
   <i [ngClass]="{'fa-circle-thin':wsConnection===1, 'fa-ban':wsConnection!=1}" class="fa fa-stack-2x" aria-hidden="true"></i>
 </span>
 <main>
-  <sv-pin-list [pins]="pins | async" (pinSelected)="showConfig($event)"></sv-pin-list>
+  <sv-pin-list [pins]="pins | async" (pinSelected)="showPinConfig($event)"></sv-pin-list>
   <hr>
-  <sv-command-list [commands]="commands | async"></sv-command-list>
+  <sv-command-list [commands]="commands | async" (commandSelected)="showCommandConfig($event)"></sv-command-list>
 </main>
 <aside>
   <sv-pin-config [pin]="selectedPin" *ngIf="selectedPin"></sv-pin-config>
+<<<<<<< HEAD
   <sv-command-config></sv-command-config>
+=======
+  <sv-command-config [command]="selectedCommand" *ngIf="selectedCommand"></sv-command-config>
+>>>>>>> 277a80f879c66a1f5a667a3bd4bd002eb0b1a974
 </aside>
 
 <router-outlet></router-outlet>
