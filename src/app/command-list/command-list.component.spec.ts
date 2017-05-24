@@ -1,3 +1,5 @@
+import { WsService } from '../ws.service';
+import { CommandComponent } from '../command/command.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommandListComponent } from './command-list.component';
@@ -8,7 +10,13 @@ describe('CommandListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CommandListComponent ]
+      declarations: [ CommandListComponent, CommandComponent ],
+      providers: [
+        {
+          provide: WsService,
+          useValue: true
+        }
+      ]
     })
     .compileComponents();
   }));

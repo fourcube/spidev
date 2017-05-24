@@ -1,3 +1,6 @@
+import { CommandListComponent } from './command-list/command-list.component';
+import { CommandConfigComponent } from './command-config/command-config.component';
+import { CommandComponent } from './command/command.component';
 import { BrowserTestingModule } from '@angular/platform-browser/testing';
 import { WsService } from './ws.service';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +23,10 @@ describe('AppComponent', () => {
         AppComponent,
         PinListComponent,
         PinComponent,
-        PinConfigComponent
+        PinConfigComponent,
+        CommandComponent,
+        CommandConfigComponent,
+        CommandListComponent
       ],
       providers: [
         WsService

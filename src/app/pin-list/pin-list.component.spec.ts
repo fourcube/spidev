@@ -1,3 +1,5 @@
+import { WsService } from '../ws.service';
+import { PinComponent } from '../pin/pin.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PinListComponent } from './pin-list.component';
@@ -8,7 +10,7 @@ describe('PinListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PinListComponent ]
+      declarations: [ PinListComponent, PinComponent ]
     })
     .compileComponents();
   }));
