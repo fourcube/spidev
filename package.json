@@ -10,7 +10,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint && cd server && npm run lint",
-    "fixlint": "ng lint --fix && cd server && npm run lint -- --fix",
+    "fixlint": "ng lint --fix && cd server && npm run fixlint",
     "e2e": "ng e2e",
     "postinstall": "cd server && npm install"
   },
