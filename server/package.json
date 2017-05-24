@@ -7,16 +7,20 @@
   "scripts": {
     "start": "npm run build:live",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "build:live": "nodemon --ignore db.json --exec ./node_modules/.bin/ts-node -- ./src/index.ts"
+    "build:live": "nodemon --ignore db.json --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
+    "test": "jasmine-ts 'src/**/*.spec.ts'",
+    "fixlint": "npm run lint -- --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jasmine": "^2.5.47",
     "@types/lowdb": "^0.15.0",
     "@types/node": "^7.0.18",
     "@types/rpio": "0.0.1",
     "@types/ws": "0.0.41",
+    "jasmine-ts": "^0.1.2",
     "nodemon": "^1.11.0",
     "ts-node": "^3.0.4",
     "tslint": "^5.2.0",
