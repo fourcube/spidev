@@ -28,7 +28,8 @@ describe('PinConfigComponent', () => {
       id: 0,
       value: 'HIGH',
       direction: 'IN',
-      resistor: 'NONE'
+      resistor: 'NONE',
+      color: '#fff'
     };
     fixture.detectChanges();
   });

@@ -1,4 +1,4 @@
-import { BasicCommand, CommandType } from '../../model';
+import { CommandType, Command } from '../../model';
 import { WsService } from '../ws.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -11,29 +11,28 @@ describe('CommandComponent', () => {
   let component: CommandComponent;
   let fixture: ComponentFixture<CommandComponent>;
 
+  const command: Command = {
+    id: 123,
+    type: 'read_spi',
+    arguments: []
+  };
+
   beforeEach(async(() => {
-    const command: BasicCommand = {
-      id: 123,
-      type: 'read_spi',
-      arguments: []
-    };
     TestBed.configureTestingModule({
       declarations: [CommandComponent],
       providers: [
         {
           provide: WsService,
-          useValue: command
+          useValue: {}
         }
       ]
-    });
-    fixture = TestBed.createComponent(CommandComponent);
-    component = fixture.componentInstance;
-    const wsService = TestBed.get(WsService);
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CommandComponent);
     component = fixture.componentInstance;
+    component.command = command;
     fixture.detectChanges();
   });
 

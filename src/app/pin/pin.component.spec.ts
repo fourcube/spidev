@@ -16,6 +16,14 @@ describe('PinComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PinComponent);
     component = fixture.componentInstance;
+    component.pin = {
+      id: 0,
+      value: 'HIGH',
+      direction: 'IN',
+      resistor: 'NONE',
+      color: '#fff'
+    };
+
     fixture.detectChanges();
   });
 

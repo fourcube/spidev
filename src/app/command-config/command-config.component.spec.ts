@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommandConfigComponent } from './command-config.component';
@@ -8,7 +9,8 @@ describe('CommandConfigComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CommandConfigComponent ]
+      declarations: [ CommandConfigComponent ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
   }));
@@ -16,6 +18,8 @@ describe('CommandConfigComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CommandConfigComponent);
     component = fixture.componentInstance;
+    component.command = { id: 0, type: 'read_spi', arguments: [] };
+
     fixture.detectChanges();
   });
 
